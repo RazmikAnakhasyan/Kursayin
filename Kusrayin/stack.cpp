@@ -1,11 +1,11 @@
 #include "stack.h"
-#include "Student.h"
+
 
 template<typename T>
 Stack<T>::Stack()
 {
     root = nullptr;
-    first = nullptr;
+
     size = 0;
 }
 template<typename T>
@@ -15,27 +15,27 @@ void Stack<T>::Push(const T& newItem) {
     newNode->next = root;
     root = newNode;
     size++;
-    first = newNode;
+    root = newNode;
 }
 template<typename T>
 void Stack<T>::Push(const int itemPosition, T item)
 {
-    if (size >= itemPosition)
+    if (itemPosition > size)
         throw length_error("Lenght Error(Function Push() Line:24)");
 
-    Node* temp = first;
+    Node* temp = root;
     Node* CurrentNode = new Node();
-    for (int i = 0; i < itemPosition; i++)
+    for (int i = 0; i <= itemPosition; i++)
     {
-        CurrentNode = first;
-        first = first->next;
+        CurrentNode = root;
+        root = root->next;
     }
     Node* NewNode = new Node();
     NewNode->data = item;
-    NewNode->next = first;
+    NewNode->next = root;
     CurrentNode->next = NewNode;
     size++;
-    first = temp;
+    root = temp;
 }
 template<typename T>
 T Stack<T>::Top() {
@@ -45,36 +45,28 @@ T Stack<T>::Top() {
     return root->data;
 }
 template<typename T>
-T Stack<T>::Pop() {
+void Stack<T>::Pop() {
     if (IsEmpty())
         throw overflow_error("Stack Is Empty!!! (Function Pop() Line:50)");
 
     Node* DelNode = root;
-    T retElem = DelNode->data;
     root = DelNode->next;
     delete DelNode;
     size--;
-
-    return retElem;
 }
 template<typename T>
-T Stack<T>::Pop(const int itemPosition)
+void Stack<T>::Pop(const int itemPosition)
 {
-    if (size >= itemPosition)
+    if (itemPosition > size - 1)
         throw length_error("Lenght Error (Function Pop() Line:64)");
-    Node* temp = first;
-    Node* CurrentNode = new Node();
-    for (int i = 0; i < itemPosition; i++)
+    Node* temp = root;
+    for (int i = 0; i <= itemPosition; i++)
     {
-
-        CurrentNode = first;
-        first = first->next;
+        root = root->next;
     }
-    CurrentNode->next = first->next;
-    delete first;
-    first = temp;
+    delete root;
+    root = temp;
     size--;
-
 }
 template<typename T>
 bool Stack<T>::IsEmpty()const

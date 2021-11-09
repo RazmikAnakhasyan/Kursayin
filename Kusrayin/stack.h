@@ -1,4 +1,7 @@
+#ifndef STACK_H
+#define STACK_H
 #include <iostream>
+
 using namespace std;
 
 template<typename T>
@@ -9,13 +12,13 @@ private:
     struct  Node
     {
         T data;
-        Node* next=nullptr;
+        Node* next;
 
 
     };
 
     Node* root;
-    Node* first;
+
 public:
     int size;
     Stack();
@@ -25,27 +28,26 @@ public:
 
     T Top();
     T Top(const int iterator);
-    T Pop();
-    T Pop(const int itemPosition);
+    void Pop();
+    void Pop(const int itemPosition);
     bool IsEmpty()const;
     Node& operator[](const int itemPosition) {
         if (itemPosition > size)
             throw length_error("Lenght Error (Operator [] Line:36)");
-        Node* temp = first;
-        Node* CurrentNode = new Node();
+        Node* temp = root;
         Node* NewNode = new Node();
         for (int i = 0; i < itemPosition; i++)
         {
 
-            CurrentNode = first;
-            first = first->next;
+
+            root = root->next;
 
         }
-        NewNode = first;
-
-        first = temp;
+        NewNode = root;
+        root = temp;
         return *NewNode;
 
     }
 };
 
+#endif // STACK_H
