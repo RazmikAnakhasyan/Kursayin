@@ -15,17 +15,18 @@ void Stack<T>::Push(const T& newItem) {
     newNode->next = root;
     root = newNode;
     size++;
-    root = newNode;
 }
 template<typename T>
-void Stack<T>::Push(const int itemPosition, T item)
+void Stack<T>::Push(int itemPosition, T item)
 {
-    if (itemPosition > size)
+    if (itemPosition > size ) {
         throw length_error("Lenght Error(Function Push() Line:24)");
+        break;
+    }
 
     Node* temp = root;
     Node* CurrentNode = new Node();
-    for (int i = 0; i <= itemPosition; i++)
+    for (int i = 0; i < itemPosition; i++)
     {
         CurrentNode = root;
         root = root->next;
