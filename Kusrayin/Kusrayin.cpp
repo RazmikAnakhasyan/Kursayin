@@ -1,9 +1,10 @@
 ﻿#include "stack.cpp"
+#include "Student.h"
 using namespace std;
 int main()
 {
-    Stack<int> StudentList;
-    int Element;
+    Stack<Student> StudentList;
+    Student student;
     char Countinue = ' ';
     bool Start = false;
     int Position = 0;
@@ -14,9 +15,9 @@ int main()
     switch (Countinue) {
     case '1':
         Start = true;
-        cin >> Element;
-        StudentList.Push(Element);
-        cout << "\n Element Created ";
+        student.SetOtions();
+        StudentList.Push(student);
+        cout << "\n Student Created ";
         break;
     case '2':
         return 0;
@@ -26,28 +27,30 @@ int main()
         break;
     }
     while (Start == true) {
-        cout << "Pleaze Type \n'1' For Add Element"
-            "\n\n'2' For Delete Element"
+        cout << "Pleaze Type \n'1' For Add Student"
+            "\n\n'2' For Delete Student"
             "\n\n'3' For Print List Of Students"
-            "\n\n'4' For Delete Element In Position"
-            "\n\n'5' For Add Element In Position"
-            "\n\n'6' For Get Information About User"
-            "\n\n'7' For Exit"
+            "\n\n'4' For Delete Student In Position"
+            "\n\n'5' For Add Student In Position"
+            "\n\n'6' For Show Student With Max Absence Count"
+            "\n\n'7' For Show All Students With Same Max Absence Count"
+            "\n\n'8' For Get Information About User"
+            "\n\n'9' For Exit"
             "\n->";
         cin >> Countinue;
         switch (Countinue) {
         case '1':
-            cin >> Element;
-            StudentList.Push(Element);
+            student.SetOtions();
+            StudentList.Push(student);
             break;
         case '2':
             StudentList.Pop();
-            cout << "\nLast Added Element Deleted!!!\n";
+            cout << "\nLast Added Student Deleted!!!\n";
             system("pause");
             break;
         case '3':
             for (int i = 0;i < StudentList.size;i++) {
-                cout << StudentList[i].data;
+                StudentList[i].data.Print();
             }
             system("pause");
             break;
@@ -59,18 +62,26 @@ int main()
             system("pause");
             break;
         case '5':
-            cin >> Element;
+            student.SetOtions();
             cout << "\nSize Of Your List Equal to " << StudentList.size << " Pleaz Input Number Less Then " << StudentList.size << "\n->";
             cin >> Position;
-            StudentList.Push(Position, Element);
+            StudentList.Push(Position, student);
             break;
         case '6':
-            cout << "\nInput Index Of Element To Get Information About Your List Size Equal To " << StudentList.size << "\n->";
-            cin >> Position;
-           cout <<  StudentList[Position - 1].data;
+            student.ReturnMaxAbsence(StudentList);
             system("pause");
             break;
         case '7':
+            student.ReturnMaxAbsenceList(StudentList);
+            system("pause");
+            break;
+        case '8':
+            cout << "\nInput Index Of Student To Get Information About Your List Size Equal To " << StudentList.size << "\n->";
+            cin >> Position;
+            StudentList[Position - 1].data.Print();
+            system("pause");
+            break;
+        case '9':
             return 0;
             break;
         default:
