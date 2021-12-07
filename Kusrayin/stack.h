@@ -1,5 +1,3 @@
-#ifndef STACK_H
-#define STACK_H
 #include <iostream>
 
 using namespace std;
@@ -13,6 +11,8 @@ private:
     {
         T data;
         Node* next;
+
+
     };
 
     Node* root;
@@ -28,15 +28,19 @@ public:
     T Top(const int iterator);
     void Pop();
     void Pop(const int itemPosition);
+    void Swap(Stack<T> stack, int First, int Second);
     bool IsEmpty()const;
     Node& operator[](const int itemPosition) {
-        if (itemPosition > size-1)
+        if (itemPosition > size)
             throw length_error("Lenght Error (Operator [] Line:36)");
         Node* temp = root;
         Node* NewNode = new Node();
         for (int i = 0; i < itemPosition; i++)
         {
+
+
             root = root->next;
+
         }
         NewNode = root;
         root = temp;
@@ -44,5 +48,3 @@ public:
 
     }
 };
-
-#endif // STACK_H

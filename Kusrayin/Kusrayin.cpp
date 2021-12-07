@@ -82,7 +82,8 @@ int main()
             system("pause");
             break;
         case '9':
-            return 0;
+            StudentList.Swap(StudentList, 1, 2);
+            //return 0;
             break;
         default:
             return 0;

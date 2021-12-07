@@ -1,15 +1,13 @@
-#ifndef STUDENT_H
-#define STUDENT_H
 #include <iostream>
 #include "stack.h"
 using namespace std;
 struct Student
 {
-    string Name;
-    short grade;
-    short absence;
-    short reprimand;
-    int MaxAbsence;
+    string Name="";
+    short grade=0;
+    short absence=0;
+    short reprimand=0;
+    int MaxAbsence=0;
     void Print();
     void SetOtions();
     void ReturnMaxAbsence(Stack<Student>& StudentsList);
@@ -74,4 +72,3 @@ void Student::Print()
         << "Reprimand " << reprimand << "\n\n";
 }
 
-#endif // STUDENT_H
