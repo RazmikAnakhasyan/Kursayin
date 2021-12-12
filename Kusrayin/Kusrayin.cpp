@@ -1,13 +1,15 @@
 ﻿#include "stack.cpp"
 #include "Student.h"
 using namespace std;
+
+
 int main()
 {
     Stack<Student> StudentList;
     Student student;
     char Countinue = ' ';
     bool Start = false;
-    int Position = 0;
+    int Position = 0, First = 0, Second = 0;
     cout << "\t\t\t\t\tWelcome to My Project!!!\n";
     cout << "Pleaze Type \n'1' For Create List"
         "\n\n'2' For Exit Program\n->";
@@ -35,7 +37,8 @@ int main()
             "\n\n'6' For Show Student With Max Absence Count"
             "\n\n'7' For Show All Students With Same Max Absence Count"
             "\n\n'8' For Get Information About User"
-            "\n\n'9' For Exit"
+            "\n\n'9' For Swap Elements"
+            "\n\n'10' For Exit"
             "\n->";
         cin >> Countinue;
         switch (Countinue) {
@@ -68,7 +71,9 @@ int main()
             StudentList.Push(Position, student);
             break;
         case '6':
-            student.ReturnMaxAbsence(StudentList);
+            cout << "Pleaz Input Absence Count";
+            cin >> Position;
+            student.ReturnMaxAbsence(StudentList, Position);
             system("pause");
             break;
         case '7':
@@ -82,9 +87,15 @@ int main()
             system("pause");
             break;
         case '9':
-            StudentList.Swap(StudentList, 1, 2);
-            //return 0;
+            cout << "Enter First Position";
+            cin >> First;
+            cout << "Enter Second Position";
+            cin >> Second;
+            StudentList.Swap(StudentList, &StudentList[0].next, First, Second);
+            system("pause");
             break;
+        case '10':
+            return 0;
         default:
             return 0;
             break;

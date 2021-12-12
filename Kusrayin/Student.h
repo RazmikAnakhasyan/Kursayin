@@ -3,30 +3,25 @@
 using namespace std;
 struct Student
 {
-    string Name="";
-    short grade=0;
-    short absence=0;
-    short reprimand=0;
-    int MaxAbsence=0;
+    string Name;
+    short grade;
+    short absence;
+    short reprimand;
+    int MaxAbsence;
     void Print();
     void SetOtions();
-    void ReturnMaxAbsence(Stack<Student>& StudentsList);
+    void ReturnMaxAbsence(Stack<Student>& StudentsList, int AbsenceCount);
     void ReturnMaxAbsenceList(Stack<Student>& StudentsList);
 };
 
-void Student::ReturnMaxAbsence(Stack<Student>& StudentsList)
+void Student::ReturnMaxAbsence(Stack<Student>& StudentsList, int AbsenceCount)
 {
-    int Position = 0;
-    MaxAbsence = StudentsList[0].data.absence;
     for (int i = 0;i <= StudentsList.size - 1;i++)
     {
-
-        if (StudentsList[i].data.absence > MaxAbsence) {
-            MaxAbsence = StudentsList[i].data.absence;
-            Position = i;
+        if (StudentsList[i].data.absence > AbsenceCount && StudentsList[i].data.reprimand > 1) {
+            StudentsList[i].data.Print();
         }
     }
-    StudentsList[Position].data.Print();
 }
 void Student::ReturnMaxAbsenceList(Stack<Student>& StudentsList)
 {
@@ -72,3 +67,4 @@ void Student::Print()
         << "Reprimand " << reprimand << "\n\n";
 }
 
+#endif // STUDENT_H

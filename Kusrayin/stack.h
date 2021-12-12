@@ -1,3 +1,4 @@
+
 #include <iostream>
 
 using namespace std;
@@ -10,9 +11,7 @@ private:
     struct  Node
     {
         T data;
-        Node* next;
-
-
+        Node* next = nullptr;
     };
 
     Node* root;
@@ -28,7 +27,7 @@ public:
     T Top(const int iterator);
     void Pop();
     void Pop(const int itemPosition);
-    void Swap(Stack<T> stack, int First, int Second);
+    void Swap(Stack stack, Node** head_ref, int x, int y);
     bool IsEmpty()const;
     Node& operator[](const int itemPosition) {
         if (itemPosition > size)
@@ -37,14 +36,11 @@ public:
         Node* NewNode = new Node();
         for (int i = 0; i < itemPosition; i++)
         {
-
-
             root = root->next;
-
         }
         NewNode = root;
         root = temp;
         return *NewNode;
-
     }
 };
+
